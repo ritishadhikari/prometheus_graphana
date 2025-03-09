@@ -1,0 +1,6 @@
+Promethues is a Time Series Database
+
+Telemetry in software refers to the collection of business and diagnosis
+data from the software in production, and store and visualise it for the purpose
+of diagnosing production issues for improving the business
+
