@@ -1,0 +1,8 @@
+The process of connecting to an exporter and pulling the metrics into
+prometheus is called as Scrapping
+
+Node Exporter:
+    -  Node based exporter is an official prometheus exporter for collecting
+    metrics that are exposed by Unix-based kernels, ex. Linux and Ubuntu
+    - Example of metrics are CPU, Disk, Memory and Network I/O
+    - Node Exporter can be extended with Pluggable metric collectors

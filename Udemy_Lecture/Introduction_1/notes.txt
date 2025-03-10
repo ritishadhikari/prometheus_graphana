@@ -4,3 +4,6 @@ Telemetry in software refers to the collection of business and diagnosis
 data from the software in production, and store and visualise it for the purpose
 of diagnosing production issues for improving the business
 
+Run Docker file with:
+docker run  --name=prometheus -p=9090:9090 --volume=prometheus_volume:/opt/bitnami/prometheus/data bitnami/prometheus:latest
+
