@@ -1,0 +1,75 @@
+Prometheus stores data as time series 
+Every time series is identified by metric name and labels
+Labels are a key and value pair
+Labels are optional
+
+Data Types in PromQL:
+    - Scalar:
+        - Float 
+        - String
+    - Instant Vectors:
+        - Instant vector selectors allow the selection of a set of time series
+        and a single value for each at a given timestamp (instant)
+        - Give only the metric name
+    - Range Vectors:
+        - Similar to Instant vectors except they select a range of samples
+        - Ex. label_name[time_spec] -> auth_api_hit[5m]
+        - Different date time conventions:
+            - ms: milliseconds
+            - s: seconds
+            - m: minutes
+            - h: hours
+            - d: days assuming a day has 24h
+            - w: weeks - assuming a week has 7d
+            - y: years - assuming a year has 365 days
+
+
+Ex Query:
+    - prometheus_http_requests_total{code=~"2*",job="prometheus"}
+    - Get all metrics whose code values starts with 2
+
+
+Scalar + Instant Vector -> Applies to every value of instant vector
+
+Instant Vector + Instant Vector -> Applies to every value of left vector
+and its matching value in the right vector
+
+Set Binary operators can be applied on Instant Vectors only
+
+prometheus_http_response_size_bytes_bucket{handler=~"/api/v1/*.*"} ->
+Matches any row with record whose metric is prometheus_http_response_size_bytes_bucket
+and which contains /api/v1/ and then some values
+
+prometheus_http_response_size_bytes_bucket{
+    handler=~"/api/v1/*.*",
+    le=~"100*.*"} -> Create a filtering condition with multiple arguments
+
+Aggregation Operators aggregates the elements of a single Instant Vector and the result
+is a new Instant Vector with aggregated values
+    - Ex: Sum, Min, Max, Avg, Count, Group, count_values, topk, bottomk, stdev, stdvar
+    - topk finds the k largest elements by sample value and bottomk finds the smallest
+    elements by sample value
+    - syntax: <aggregation operator>(<Instant Vector)
+
+sum(prometheus_http_response_size_bytes_bucket) -> Sum the entire values for the metric
+prometheus_http_response_size_bytes_bucket
+
+SUM(prometheus_http_response_size_bytes_bucket) BY (le) -> Sum the value for the metric
+prometheus_http_response_size_bytes_bucket and group by le
+
+SUM(prometheus_http_response_size_bytes_bucket) WITHOUT (le) -> Sum for the given metric
+prometheus_http_response_size_bytes_bucket where le label is not present
+
+TOPK(3,SUM(prometheus_http_response_size_bytes_bucket) BY (le)) -> Sum for the given 
+metric prometheus_http_response_size_bytes_bucket and display the top 3 values by le
+
+BOTTOMK(3,SUM(prometheus_http_response_size_bytes_bucket) BY (le)) -> Count for the given 
+metric prometheus_http_response_size_bytes_bucket and display by le
+
+TOPK(3,AVG(prometheus_http_response_size_bytes_bucket) BY (le)) Average for the given 
+metric prometheus_http_response_size_bytes_bucket and display the top 3 values by le
+
+prometheus_http_requests_total OFFSET 10m -> Get information before the last 10 minutes
+
+SUM(prometheus_http_response_size_bytes_bucket OFFSET 40m) BY (le) -> Get the sum 
+of the above metric by le after offseting it by 40 minute
