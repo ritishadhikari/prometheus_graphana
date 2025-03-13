@@ -1,0 +1,5 @@
+Alerts are defined in an YAML file
+
+Alert Manager gets signals from Prometheus and sends the notifications to the target
+
+Use the for expression to define a time threshold

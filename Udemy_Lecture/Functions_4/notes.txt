@@ -1,0 +1,51 @@
+absent(<instant Vector>): Checks if an instant vector has any members. Returns an 
+empty vector if parameters has elements
+
+absent(prometheus_sd_dns_lookup_failures_total{cpu="xhsg"}) -> Will return {cpu="xhsg"}
+since it does not exists within the metric: prometheus_sd_dns_lookup_failures_total
+
+absent_over_time(<range Vector>): Checks if a range vector has any members. Returns an
+empty vector if parameter has elements
+
+absent_over_time(prometheus_api_notification_updates_sent_total{cpu="afd"}[1m]) -> Will
+return {cpu="afd"} since it does not exists within the metric: 
+prometheus_sd_dns_lookup_failures_total over the timeline
+
+abs(<Instant Vector>): Converts all values to their absolute value
+
+abs(prometheus_engine_queries_concurrent_max): Returns the absolute value 
+
+ceil(go_memstats_stack_inuse_bytes): Provides the ceiling value. Applicable with 
+Instant Vectors
+
+floor(go_memstats_stack_inuse_bytes): Provides the floor value. Applicable with 
+Instant Vectors
+
+clamp(go_memstats_stack_inuse_bytes,2323,8763) -> Clamp the values between the minimum
+and maximum and return the result
+
+clamp_min(go_memstats_stack_inuse_bytes,2323) -> Return the original value if it is
+higher than then the provided value else clamp it to minimum, i.e. 2323 
+clamp_max(go_memstats_stack_inuse_bytes,500000) -> Return the original value if it is
+lower than then the provided value else clamp it to maximum, i.e. 500000 
+
+day_of_month(<Instant Vector>): For every UTC time returns day of month 1..31
+day_of_week(<Instant Vector>): For every UTC time returns day of week 1..7
+
+log2(go_memstats_stack_inuse_bytes) -> Gives the Log Base 2 value
+
+log10(go_memstats_stack_inuse_bytes) -> Gives the Log Base 10 value
+
+sort(prometheus_engine_query_duration_seconds_count): Sorts the values in an 
+ascending order
+
+sort_desc(prometheus_engine_query_duration_seconds_count): Sorts the values in 
+a descending order
+
+timestamp(prometheus_engine_query_duration_seconds_count): Returns the timestamp
+
+time(): Give the near time
+
+avg_over_time(prometheus_engine_query_duration_seconds_count[2h]): Gives the Average
+over time for a range vector. Also available are avg_over_time, min_over_time, 
+sum_over_time and count_over_time

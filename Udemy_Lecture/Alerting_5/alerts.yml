@@ -1,0 +1,7 @@
+groups:
+  - name: Alerts
+    rules:
+    - alert: Is Node Exporter Up and Running
+      expr: absent(up{job="node-exporter"})
+      for: 5m
+      
