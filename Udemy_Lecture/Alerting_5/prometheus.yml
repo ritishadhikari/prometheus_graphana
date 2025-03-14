@@ -11,3 +11,10 @@ scrape_configs:
   
   rule_files:
     - "rule/alerts.yml"
+    - "rule/recording_rule.yml"
+  
+  alerting:
+    alertmanagers:
+      - static_configs:
+          - targets: 
+            - 'localhost:9093'

@@ -1,0 +1,2 @@
+Calculate "avg" of "temperature" from IoT every 5 minutes and save it as IoT_Avg_Temp
+Rules are defined in the YAML files

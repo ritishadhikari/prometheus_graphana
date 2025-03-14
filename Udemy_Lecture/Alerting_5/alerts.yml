@@ -8,5 +8,14 @@ groups:
         team: Team Alpha
         severity: critical
       annotations:
-        summary:"{{ $ labels.instance}} is down"
+        summary:"{{ $ labels.instance }} is down"
+        description": "Team alpha needs to restart the server {{ $labels }} VALUE: {{ $value }}"
+    - alert: Is Prometheus Build Info Up and Running
+      expr: prometheus_build_info{branch="HEAD", goarch="amd64", goos="windows", goversion="go1.23.6", instance="localhost:9090", job="prometheus", revision="804c49d58f3f3784c77c9c8ec17c9062092cae27", tags="builtinassets,stringlabels", version="3.2.1"}==1
+      for: 7m
+      labels:
+        team: Team Beta
+        severity: critical
+      annotations:
+        summary:"{{ $ labels.instance }} is down"
         description": "Team alpha needs to restart the server {{ $labels }} VALUE: {{ $value }}"

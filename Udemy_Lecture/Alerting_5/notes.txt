@@ -9,3 +9,12 @@ Prometheus servers and can deduplicate alerts. It can also be used to silence al
 
 The web user interface for alert manager is accessed via port 9093 and is configured
 via a alertmanager.yml file
+
+Matcher:
+    - match : Equality Matcher where severity="high". Legacy
+    - match_re : Regular Expression (regex) matcher. Legacy
+    - matchers: Matchers belongs to a Route
+
+Inhibiting Alerts:
+    - Silencing is temporary
+    - Inhibiting Notifications is permanent
