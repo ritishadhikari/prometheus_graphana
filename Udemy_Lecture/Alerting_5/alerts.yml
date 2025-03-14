@@ -3,5 +3,10 @@ groups:
     rules:
     - alert: Is Node Exporter Up and Running
       expr: absent(up{job="node-exporter"})
-      for: 5m
-      
+      for: 7m
+      labels:
+        team: Team Alpha
+        severity: critical
+      annotations:
+        summary:"{{ $ labels.instance}} is down"
+        description": "Team alpha needs to restart the server {{ $labels }} VALUE: {{ $value }}"

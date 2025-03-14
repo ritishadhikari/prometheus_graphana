@@ -1,0 +1,33 @@
+global: 
+  # The Smarthost and SMTP sender used for mail notifications
+  smtp_smarthost: "in-v3.mailjet.com:587"
+  smtp_from: "info@cloudware.net.au"
+  smtp_auth_username: ""
+  smtp_auth_password: ""
+route:
+  receiver: 'main_receiver'
+  routes:
+  - receiver: 'urgent_receiver'
+    matchers:
+    - severity: 'critical'
+  - receiver: 'pager_duty_receiver'
+    matchers:
+    - severity: 'critical'
+
+receivers:
+- name: "main_receiver"
+  email_configs:
+  - to: 'ritishadhikari@gmail.com'
+
+- name: 'urgent_receiver'
+  email_configs:
+  - to: 'info@cloudware.net.au'
+
+- name: 'urgent_receiver'
+  slack_configs:
+  - api_url: 'https://hooks.slack.com/services/T01JZQZQZQZ/B01JZQZQZQZ/1'
+    channel: 'udemy-course-for-prometheus'
+  
+- name: 'pager_duty_receiver'
+  pagerduty_configs:
+  - service_key:  'oiqedjqwedasdsdfsdfs'

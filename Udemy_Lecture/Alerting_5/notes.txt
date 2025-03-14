@@ -3,3 +3,9 @@ Alerts are defined in an YAML file
 Alert Manager gets signals from Prometheus and sends the notifications to the target
 
 Use the for expression to define a time threshold
+
+Alert Manager converts alerts to notifications and can receive alerts from multiple
+Prometheus servers and can deduplicate alerts. It can also be used to silence alerts.
+
+The web user interface for alert manager is accessed via port 9093 and is configured
+via a alertmanager.yml file
