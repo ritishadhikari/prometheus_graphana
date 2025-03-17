@@ -1,6 +1,10 @@
 The process of connecting to an exporter and pulling the metrics into
 prometheus is called as Scrapping
 
+
+A Push Gateway is a component of Prometheus which acts as a temporary storage where applications can send metrics into it and 
+it has a built-in exporter so prometheus can also scrape the information from Push Gateway 
+
 Node Exporter:
     -  Node based exporter is an official prometheus exporter for collecting
     metrics that are exposed by Unix-based kernels, ex. Linux and Ubuntu
