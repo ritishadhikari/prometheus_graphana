@@ -2,20 +2,30 @@ groups:
   - name: Alerts
     rules:
     - alert: Is Node Exporter Up and Running
-      expr: absent(up{job="node-exporter"})
+      expr: absent(up{job="application_server"})
       for: 7m
       labels:
         team: Team Alpha
         severity: critical
-      annotations:
-        summary:"{{ $ labels.instance }} is down"
-        description": "Team alpha needs to restart the server {{ $labels }} VALUE: {{ $value }}"
-    - alert: Is Prometheus Build Info Up and Running
-      expr: prometheus_build_info{branch="HEAD", goarch="amd64", goos="windows", goversion="go1.23.6", instance="localhost:9090", job="prometheus", revision="804c49d58f3f3784c77c9c8ec17c9062092cae27", tags="builtinassets,stringlabels", version="3.2.1"}==1
-      for: 7m
+      # annotations:
+      #   summary:"{{ $ labels.instance }} is down"
+        # description": "Team alpha needs to restart the server {{ $labels }} VALUE: {{ $value }}"
+    - alert: Has CPU usage crossed 2400 seconds
+      expr: avg(node_cpu_seconds_total{cpu="4"}) > 2400
+      for: 20s
       labels:
         team: Team Beta
         severity: critical
       annotations:
-        summary:"{{ $ labels.instance }} is down"
-        description": "Team alpha needs to restart the server {{ $labels }} VALUE: {{ $value }}"
+        summary: "CPU usage is high"
+        description: "CPU usage has crossed 2400 seconds"
+  
+    # - alert: Is Prometheus Build Info Up and Running
+    #   expr: prometheus_build_info{branch="HEAD", goarch="amd64", goos="windows", goversion="go1.23.6", instance="localhost:9090", job="prometheus", revision="804c49d58f3f3784c77c9c8ec17c9062092cae27", tags="builtinassets,stringlabels", version="3.2.1"}==1
+    #   for: 7m
+    #   labels:
+    #     team: Team Beta
+    #     severity: critical
+    #   annotations:
+    #     summary:"{{ $ labels.instance }} is down"
+    #     description": "Team alpha needs to restart the server {{ $labels }} VALUE: {{ $value }}"
