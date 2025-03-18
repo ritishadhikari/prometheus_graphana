@@ -13,6 +13,7 @@ route:
   - receiver: 'pager_duty_receiver'
     matchers:
     - severity: 'critical'
+    
 inhibit_rules:
 - source_match:
     team: "Team Alpha"

@@ -1,7 +1,0 @@
-groups:
-  - name: node exporter rules
-    rules: 
-      - record: cpu: prometheus_engine_query_duration_seconds_count:avg
-        expr: avg by(slice) (rate(prometheus_engine_query_duration_seconds_count[2m]))
-        labels:
-          exporter_type: node

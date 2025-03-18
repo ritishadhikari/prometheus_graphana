@@ -1,0 +1,21 @@
+global:
+  # The Smarthost and SMTP sender used for mail notifications
+  smtp_smarthost: "localhost:25"
+  smtp_from: "ritishadhikari@gmail.com"   
+  smtp_auth_username: "ritishadhikari"
+  smtp_auth_password: "Clever@107"
+
+route:
+  receiver: 'main_receiver'
+  routes:
+  - receiver: 'urgent_receiver'
+    matchers:
+    - severity: 'critical'
+
+receivers:
+- name: "main_receiver"
+  email_configs:
+  - to: 'ritishadhikari@gmail.com'
+- name: 'urgent_receiver'
+  email_configs:
+  - to: 'radhik0607@gmail.com'
