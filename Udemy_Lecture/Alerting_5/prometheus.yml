@@ -39,6 +39,31 @@ scrape_configs:
     static_configs:
       - targets: ["localhost:8000"]
     
+  # - job_name: "aws service discovery"
+  #   ec2_sd_configs:
+  #     - region: "us-west-2"
+  #       port: 9090
+  #       access_key: 
+  #       secret_key:
+  #       filters:
+  #         - name: tag:Name
+  #           values:
+  #             - "dev-.*"
+  #   relable_configs:
+  #     - source_labels: [__meta_ec2_tag_Name, __meta_ec2_private_ip]
+  #       target_label: instance
+  #     - source_labels: [__meta_ec2_tag_Name]
+  #       regex: (dev-test.*)
+  #       action: drop  # else keep the instance  
+  #     - source_labels: [__meta_ec2_public_ip]
+  #       replacement: ${1}:9090      
+  #       target_label: __address__
+  - job_name: "file_sd"  # file service discovery
+    file_sd_configs:
+      - files:
+        - "/etc/prometheus/files_sd/*.yml"
+    
+          
   # - job_name: "alert_manager"
   #   static_configs:
   #     - targets: ["localhost:9093"]
