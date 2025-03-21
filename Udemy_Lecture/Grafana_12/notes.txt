@@ -1,0 +1,7 @@
+Grafana is a open source software to:
+    - Visualize time-series data (metrics)
+    - Visualize metrics from various data-sources
+    - Supports Alerting
+    - Multi-Organizational
+
+Grafana Cloud is a fully managed cloud-hosted observability platform 
