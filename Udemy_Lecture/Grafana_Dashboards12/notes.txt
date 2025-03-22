@@ -5,3 +5,6 @@ Grafana is a open source software to:
     - Multi-Organizational
 
 Grafana Cloud is a fully managed cloud-hosted observability platform 
+
+Visualization in Grafana is called as a Panel
+
