@@ -1,0 +1,8 @@
+Loki is an Open Source Log Aggregation system designed to work seamlessly with Grafana
+Advantages of Using Grafana Loki:
+    - Log Aggregation: COllecting, Storing and querying large amounts of logs
+    - Prometheus-Inspired Design: Uses similar concepts and query language as Prometheus
+    - Integration with Grafana: Users can visualize log data in Grafana dashboards, allowing
+    for seamless correlation of log events with other observability metrics
+    - Distributed Architecture: It can scale horizontally
+    - Cost Effective Storage: Chunk-Based storage mechanism
